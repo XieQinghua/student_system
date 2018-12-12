@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    dexOptions {
+        jumboMode true
+    }
+
+    defaultConfig {
+        applicationId "com.stu.system"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:27.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:27.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    /** 工具类类库 */
+    compile 'com.blankj:utilcode:1.9.1'
+    /** 下拉刷新上拉加载 */
+    compile 'com.qbw.customview:refreshloadmorelayout:2.3.0-beta2'
+    /** 图片加载库 */
+    compile 'com.facebook.fresco:fresco:0.12.0'
+    compile 'org.greenrobot:eventbus:3.1.1'
+    /** 仿iOS的PickerView控件 */
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
+    /** 网络请求 */
+    compile 'com.squareup.retrofit2:retrofit:2.4.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.13'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    /** butterknife注解框架 */
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    /** permission */
+    implementation 'com.yanzhenjie:permission:2.0.0-rc2'
+    implementation 'com.yanzhenjie.alertdialog:alertdialog:1.0.1'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+}

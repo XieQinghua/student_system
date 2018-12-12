@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="48dp"
+            android:background="@color/main_bg"
+            android:orientation="vertical" />
+
+        <View
+            android:id="@+id/bottomLine"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_above="@+id/rg"
+            android:background="@color/split_line"
+            android:visibility="visible" />
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <RadioButton
+                android:id="@+id/rb_stu_mange"
+                style="@style/MainRadioButton"
+                android:checked="true"
+                android:drawableTop="@drawable/main_stu_manage_bg"
+                android:text="@string/stu_manage" />
+
+            <RadioButton
+                android:id="@+id/rb_stu_add"
+                style="@style/MainRadioButton"
+                android:drawableTop="@drawable/main_stu_add_bg"
+                android:text="@string/stu_add" />
+
+            <RadioButton
+                android:id="@+id/rb_mine"
+                style="@style/MainRadioButton"
+                android:drawableTop="@drawable/main_mine_bg"
+                android:text="@string/mine" />
+        </RadioGroup>
+
+    </RelativeLayout>
+</LinearLayout>

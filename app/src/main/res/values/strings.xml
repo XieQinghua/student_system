@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">学生成长系统</string>
+    <string name="login_name">登录名</string>
+    <string name="login_password">输入密码</string>
+    <string name="login_set">登录设置</string>
+    <string name="login_set_ip">请设置本地服务器IP</string>
+
+    <string name="stu_manage">学生管理</string>
+    <string name="stu_add">添加学生</string>
+    <string name="mine">我的</string>
+
+
+    <!--AndPermission-->
+    <string name="setting">设置</string>
+    <string name="resume">继续</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+    <string name="no">拒绝</string>
+    <string name="permission_camera">相机</string>
+    <string name="permission_contact">联系人</string>
+    <string name="permission_location">位置</string>
+    <string name="permission_calendar">日历</string>
+    <string name="permission_microphone">麦克风</string>
+    <string name="permission_storage">内存</string>
+    <string name="permission_phone">手机</string>
+    <string name="permission_sensors">传感器</string>
+    <string name="permission_sms">短信</string>
+    <string name="successfully">成功</string>
+    <string name="failure">失败</string>
+    <string name="title_dialog">提示</string>
+    <string name="message_permission_rationale">同意以下权限才能使用相应功能</string>
+    <string name="message_permission_always_failed">此项功能需要这些权限，请在设置中开启</string>
+    <string name="permission_setting">权限设置</string>
+</resources>
