@@ -1,4 +1,4 @@
-package com.stu.system;
+package com.stu.system.bean;
 
 import java.io.Serializable;
 import java.util.List;

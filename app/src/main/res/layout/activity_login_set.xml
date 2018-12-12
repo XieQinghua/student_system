@@ -21,7 +21,7 @@
         android:hint="@string/login_set_ip"
         android:imeOptions="actionDone"
         android:singleLine="true"
-        android:text="http://fuck.biegral.com"
+        android:text="@string/default_url"
         android:textColor="@color/text_main_color"
         android:textColorHint="@color/text_tip_color"
         android:textCursorDrawable="@drawable/color_cursor"
@@ -33,7 +33,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="#CCCCCC" />
+        android:background="@color/text_tip_color" />
 
     <Button
         android:id="@+id/btn_ok"

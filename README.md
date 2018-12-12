@@ -1,2 +1,2 @@
 # student_system
-first submit
+学生成长系统v1.0.0

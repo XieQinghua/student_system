@@ -1,31 +1,28 @@
 package com.stu.system.http;
 
-import com.stu.system.LoginBean;
+
+import com.stu.system.bean.LoginBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Url;
 
-/*****************************
- * @Copyright(c) 2014-2018
- * 长沙市希尚网络科技有限公司 All Rights Reserved.
- * @Author：xieqinghua@jubaozan.com
- * @Date：2018/8/9
- * @Description：接口方法
- *****************************/
 public interface ApiService {
 
     /**
      * 登录
      *
+     * @param url  动态api地址
      * @param name
      * @param pass
      * @return
      */
     @FormUrlEncoded
-    @POST(Api.LOGIN)
-    Observable<LoginBean> login(@Field("name") String name,
+    @POST()
+    Observable<LoginBean> login(@Url String url,
+                                @Field("name") String name,
                                 @Field("pass") String pass);
 
 }

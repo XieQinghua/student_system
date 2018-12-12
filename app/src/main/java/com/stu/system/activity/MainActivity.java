@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.stu.system.R;
 import com.stu.system.adapter.FragmentTabAdapter;
 import com.stu.system.base.BaseActivity;
@@ -19,7 +20,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
-    private static final String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.rg)
     RadioGroup rg;
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
                 mExitTime = System.currentTimeMillis();
             } else {
-                finish();
+                ActivityUtils.finishAllActivities();
             }
             return true;
         }

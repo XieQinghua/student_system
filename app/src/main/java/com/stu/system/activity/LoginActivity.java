@@ -22,10 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.SizeUtils;
-import com.stu.system.LoginBean;
 import com.stu.system.R;
 import com.stu.system.base.BaseActivity;
+import com.stu.system.bean.LoginBean;
 import com.stu.system.common.Constants;
+import com.stu.system.http.Api;
 import com.stu.system.http.ApiLoader;
 import com.stu.system.http.SimpleCallback;
 import com.stu.system.util.DialogUtil;
@@ -33,9 +34,6 @@ import com.stu.system.util.DrawableUtils;
 import com.stu.system.util.LightStatusBarUtils;
 import com.stu.system.util.SPUtils;
 import com.stu.system.util.ToolbarUtil;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -138,6 +136,7 @@ public class LoginActivity extends BaseActivity {
             Toast.makeText(LoginActivity.this, "请设置本地服务器IP", Toast.LENGTH_SHORT).show();
             return;
         }
+        String url = SPUtils.getInstance().getString(Constants.HOST, "");
         final String name = etName.getText().toString().trim();
         final String password = etPassword.getText().toString().trim();
         //点击登录按键隐藏键盘
@@ -150,10 +149,7 @@ public class LoginActivity extends BaseActivity {
         //登录操作
         DialogUtil.showProgressDialog(this, "");
 
-        Map<String, String> mapParams = new HashMap<>();
-        mapParams.put("name", name);
-        mapParams.put("pass", password);
-        ApiLoader.reqLogin(name, password, new SimpleCallback<LoginBean>() {
+        ApiLoader.reqLogin(url + Api.LOGIN, name, password, new SimpleCallback<LoginBean>() {
             @Override
             public void onNext(LoginBean loginBean) {
                 if (loginBean != null) {
@@ -166,7 +162,7 @@ public class LoginActivity extends BaseActivity {
                         startActivity(MainActivity.class);
                         finish();
                     } else {
-                        Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, loginBean.getInfo(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
@@ -182,7 +178,6 @@ public class LoginActivity extends BaseActivity {
             public void onError(Throwable e) {
                 DialogUtil.dismissProgressDialog();
                 Toast.makeText(LoginActivity.this, "请检查IP是否设置正确", Toast.LENGTH_SHORT).show();
-
             }
         });
     }

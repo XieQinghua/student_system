@@ -1,6 +1,7 @@
 package com.stu.system.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import com.stu.system.R;
 import com.stu.system.base.BaseFragment;
+import com.stu.system.common.Constants;
+import com.stu.system.util.SPUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +21,6 @@ import butterknife.Unbinder;
  * 学生管理
  */
 public class StuManageFragment extends BaseFragment {
-    private static final String TAG = StuManageFragment.class.getSimpleName();
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -27,6 +29,7 @@ public class StuManageFragment extends BaseFragment {
     Unbinder unbinder;
 
     private View view;
+    String url;
 
     @Override
     protected View onFragmentCreated(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +43,10 @@ public class StuManageFragment extends BaseFragment {
         //EventBus.getDefault().register(this);
         ivBack.setVisibility(View.INVISIBLE);
         tvTitle.setText(R.string.stu_manage);
+
+        url = SPUtils.getInstance().getString(Constants.HOST, "");
+        Log.e(TAG, "url=" + url);
+
     }
 
     @Override

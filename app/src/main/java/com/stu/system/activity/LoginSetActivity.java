@@ -57,6 +57,10 @@ public class LoginSetActivity extends BaseActivity {
         final StateListDrawable selector = DrawableUtils.getSelector(checkedShape, uncheckedShape);
 
         tvTitle.setText(getResources().getString(R.string.login_set));
+
+        if(!TextUtils.isEmpty(SPUtils.getInstance().getString(Constants.HOST, ""))){
+            etLoginSet.setText(SPUtils.getInstance().getString(Constants.HOST, ""));
+        }
         etLoginSet.setSelection(etLoginSet.getText().length());
         btnOk.setBackground(checkedShape);
         btnOk.setClickable(false);
@@ -98,6 +102,7 @@ public class LoginSetActivity extends BaseActivity {
                 String host = etLoginSet.getText().toString().trim();
                 SPUtils.getInstance().putString(Constants.HOST, host);
                 Toast.makeText(LoginSetActivity.this, "设置IP成功", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
             default:
                 break;

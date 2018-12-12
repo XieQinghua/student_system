@@ -3,7 +3,15 @@
     <string name="login_name">登录名</string>
     <string name="login_password">输入密码</string>
     <string name="login_set">登录设置</string>
+    <string name="default_url">http://fuck.biegral.com</string>
     <string name="login_set_ip">请设置本地服务器IP</string>
+
+    <string name="enter_stu_name">请输入学生姓名</string>
+    <string name="select_stu_sex">请选择学生性别</string>
+    <string name="enter_phone_number">请输入联系电话</string>
+    <string name="select_stu_class">请选择所属班级</string>
+    <string name="select_stu_birthday">请选择出生日期</string>
+    <string name="enter_stu_address">请输入学生家庭住址</string>
 
     <string name="stu_manage">学生管理</string>
     <string name="stu_add">添加学生</string>

@@ -29,7 +29,6 @@ import butterknife.Unbinder;
  * 我的
  */
 public class MineFragment extends BaseFragment {
-    private static final String TAG = MineFragment.class.getSimpleName();
 
     @BindView(R.id.iv_back)
     ImageView ivBack;

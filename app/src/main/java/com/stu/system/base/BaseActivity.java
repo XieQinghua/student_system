@@ -9,14 +9,6 @@ import android.view.View;
 
 import com.stu.system.R;
 
-
-/*****************************
- * @Copyright(c) 2014-2018
- * 长沙市希尚网络科技有限公司 All Rights Reserved.
- * @Author：xieqinghua@jubaozan.com
- * @Date：2018/9/14
- * @Description：所有Activity的基类
- *****************************/
 public class BaseActivity extends FragmentActivity {
     protected String TAG = getClass().getSimpleName();
     protected Context context;
