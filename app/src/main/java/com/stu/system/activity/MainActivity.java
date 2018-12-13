@@ -12,7 +12,7 @@ import com.stu.system.adapter.FragmentTabAdapter;
 import com.stu.system.base.BaseActivity;
 import com.stu.system.fragment.MineFragment;
 import com.stu.system.fragment.StuAddFragment;
-import com.stu.system.fragment.StuManageFragment;
+import com.stu.system.fragment.StuManFragment;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         fragments = new ArrayList<Fragment>();
-        fragments.add(new StuManageFragment());
+        fragments.add(new StuManFragment());
         fragments.add(new StuAddFragment());
         fragments.add(new MineFragment());
 

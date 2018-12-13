@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 public class Constants {
     public static final int CLICK_INTERVAL = 1000;
+    public static final String BUGLY_ID = "61d6a998af";
 
     public static final String IS_LOGIN = "isLogin";
 

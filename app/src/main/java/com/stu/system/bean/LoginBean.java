@@ -1,35 +1,18 @@
 package com.stu.system.bean;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class LoginBean implements Serializable{
+/**
+ * http://fuck.biegral.com/Api/Login?name=yl&pass=admin
+ */
+public class LoginBean extends BaseBean {
 
     /**
      * code : 1
      * info : 登录成功！
      * value : [{"uid":"0072be31-9e49-483c-81d0-f3068e2f38c7","uname":"月亮老师"}]
      */
-
-    private int code;
-    private String info;
     private List<ValueBean> value;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
 
     public List<ValueBean> getValue() {
         return value;

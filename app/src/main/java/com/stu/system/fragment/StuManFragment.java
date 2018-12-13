@@ -20,7 +20,7 @@ import butterknife.Unbinder;
 /**
  * 学生管理
  */
-public class StuManageFragment extends BaseFragment {
+public class StuManFragment extends BaseFragment {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;

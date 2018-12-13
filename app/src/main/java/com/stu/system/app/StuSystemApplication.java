@@ -7,7 +7,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.stu.system.common.Constants;
 import com.stu.system.http.ApiManager;
-import com.stu.system.util.SPUtils;
+import com.tencent.bugly.crashreport.CrashReport;
 
 public class StuSystemApplication extends Application {
     private static final String TAG = StuSystemApplication.class.getSimpleName();
@@ -24,14 +24,12 @@ public class StuSystemApplication extends Application {
         // 初始化Fresco图片加载库
         ImagePipelineConfig frescoConfig = ImagePipelineConfig.newBuilder(getApplicationContext()).setDownsampleEnabled(true).build();
         Fresco.initialize(this, frescoConfig);
+        // 初始化bugly
+        CrashReport.initCrashReport(this, Constants.BUGLY_ID, true);
+        //CrashReport.testJavaCrash();
     }
 
     public static StuSystemApplication getInstance() {
         return app;
-    }
-
-    public String getHost() {
-        String host = SPUtils.getInstance().getString(Constants.HOST, "");
-        return host;
     }
 }

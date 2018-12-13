@@ -60,9 +60,9 @@ public class MineFragment extends BaseFragment {
         ivBack.setVisibility(View.INVISIBLE);
         tvTitle.setText(R.string.mine);
 
-        tvVersion.setText("当前版本：" + AppUtils.getAppName() + " v" + AppUtils.getAppVersionName());
+        tvVersion.setText("系统版本：" + AppUtils.getAppName() + " v" + AppUtils.getAppVersionName());
         tvLoginName.setText("当前账号：" + SPUtils.getInstance().getString(Constants.NAME, ""));
-        tvLoginUname.setText("当前老师：" + SPUtils.getInstance().getString(Constants.UNAME, ""));
+        tvLoginUname.setText("当前操作人：" + SPUtils.getInstance().getString(Constants.UNAME, ""));
 
         final GradientDrawable checkedShape = DrawableUtils.getShape(GradientDrawable.RECTANGLE, Constants.TRAN_MAIN_COLOR, SizeUtils.dp2px(25), 0, Constants.TRAN_MAIN_COLOR);
         final GradientDrawable uncheckedShape = DrawableUtils.getShape(GradientDrawable.RECTANGLE, Constants.MAIN_COLOR, SizeUtils.dp2px(25), 0, Constants.MAIN_COLOR);
