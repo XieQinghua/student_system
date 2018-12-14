@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rb"
+    android:layout_width="120dp"
+    android:layout_height="45dp"
+    android:background="@drawable/rb_line_selector"
+    android:button="@null"
+    android:gravity="center"
+    android:text="班级"
+    android:textColor="@color/tab_text_color"
+    android:textSize="@dimen/text_size_normal"
+    android:textStyle="bold" />

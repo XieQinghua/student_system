@@ -2,8 +2,16 @@ package com.stu.system.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.stu.system.app.StuSystemApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SPUtils {
     private SharedPreferences mSp;
@@ -54,6 +62,26 @@ public class SPUtils {
         return mSp.getLong(key, defValue);
     }
 
+    public <T> List<T> getDataList(String key, Class<T> cls, String value) {
+        List<T> dataList = new ArrayList<T>();
+        String strJson = mSp.getString(key, value);
+        if (TextUtils.isEmpty(strJson)) {
+            return dataList;
+        }
+        Gson gson = new Gson();
+        try {
+            //dataList = new Gson().fromJson(strJson, new TypeToken<List<T>>() {
+            //}.getType());
+            JsonArray array = new JsonParser().parse(strJson).getAsJsonArray();
+            for (JsonElement elem : array) {
+                dataList.add(gson.fromJson(elem, cls));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dataList;
+    }
+
     /**
      * 存入string
      */
@@ -83,6 +111,24 @@ public class SPUtils {
      */
     public void putLong(String key, long value) {
         mEditor.putLong(key, value);
+        mEditor.commit();
+    }
+
+    /**
+     * 存入数组
+     *
+     * @param key
+     * @param datalist
+     * @param <T>
+     */
+    public <T> void putDataList(String key, List<T> datalist) {
+        if (null == datalist || datalist.size() <= 0) {
+            return;
+        }
+        Gson gson = new Gson();
+        //转换成json数据，再保存
+        String strJson = gson.toJson(datalist);
+        mEditor.putString(key, strJson);
         mEditor.commit();
     }
 

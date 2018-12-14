@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <!--<com.qbw.customview.RefreshLoadMoreLayout
+        android:id="@+id/refreshloadmore"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:rll_bg="@color/main_bg"
+        app:rll_footer_progress="@drawable/header_progress"
+        app:rll_footer_progress_size="15dp"
+        app:rll_footer_title_size="@dimen/text_size_middle"
+        app:rll_header_progress="@drawable/header_progress"
+        app:rll_header_progress_size="15dp"
+        app:rll_header_subtitle_size="@dimen/text_size_middle"
+        app:rll_header_title_size="@dimen/text_size_middle"
+        app:rll_textcolor="@color/text_common_color">-->
+
+    <GridView
+        android:id="@+id/gv_class_stu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="5dp"
+        android:listSelector="@color/transparent"
+        android:numColumns="2"
+        android:overScrollMode="never"
+        android:padding="10dp"
+        android:scrollbars="none"
+        android:verticalSpacing="5dp"
+        android:visibility="visible" />
+
+    <!--</com.qbw.customview.RefreshLoadMoreLayout>-->
+
+</RelativeLayout>

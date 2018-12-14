@@ -15,8 +15,10 @@
 
     <string name="stu_manage">学生管理</string>
     <string name="stu_add">添加学生</string>
-    <string name="mine">我的</string>
+    <string name="network_error">网络异常</string>
+    <string name="no_data">此界面暂无数据</string>
 
+    <string name="mine">我的</string>
 
     <!--AndPermission-->
     <string name="setting">设置</string>

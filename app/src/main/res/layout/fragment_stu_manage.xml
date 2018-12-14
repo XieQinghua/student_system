@@ -1,21 +1,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg">
 
     <include layout="@layout/layout_blue_head" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_head"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:scrollbars="none">
+
+            <RadioGroup
+                android:id="@+id/rg_class"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal" />
+
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:id="@+id/ll_class_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="50dp"
+        android:drawablePadding="5dp"
+        android:drawableTop="@mipmap/img_empty"
         android:gravity="center"
-        android:text="学生管理"
-        android:textColor="@color/blue"
-        android:textSize="@dimen/text_size_normal" />
+        android:text="@string/no_data"
+        android:textColor="@color/text_second_color"
+        android:textSize="@dimen/text_size_normal"
+        android:visibility="gone" />
 
 </RelativeLayout>

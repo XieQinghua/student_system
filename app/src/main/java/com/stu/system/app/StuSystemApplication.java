@@ -25,7 +25,7 @@ public class StuSystemApplication extends Application {
         ImagePipelineConfig frescoConfig = ImagePipelineConfig.newBuilder(getApplicationContext()).setDownsampleEnabled(true).build();
         Fresco.initialize(this, frescoConfig);
         // 初始化bugly
-        CrashReport.initCrashReport(this, Constants.BUGLY_ID, true);
+        CrashReport.initCrashReport(this, Constants.BUGLY_ID, false);
         //CrashReport.testJavaCrash();
     }
 

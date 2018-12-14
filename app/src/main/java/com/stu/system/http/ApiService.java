@@ -17,6 +17,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface ApiService {
@@ -42,11 +43,11 @@ public interface ApiService {
 
     @GET()
     Observable<GetStuManBean> getStuMan(@Url String url,
-                                        @Field("uid") String uid);
+                                        @Query("uid") String uid);
 
     @GET()
     Observable<GetClassStuBean> getClassStu(@Url String url,
-                                            @Field("cid") String cid);
+                                            @Query("cid") String cid);
 
     @GET()
     Observable<GetActionListBean> getActionList(@Url String url);
@@ -58,7 +59,7 @@ public interface ApiService {
 
     @GET()
     Observable<GetStuHisListBean> getStuHisList(@Url String url,
-                                                @Field("sid") String sid,
-                                                @Field("pageindex") String pageindex);
+                                                @Query("sid") String sid,
+                                                @Query("pageindex") String pageindex);
 
 }

@@ -12,6 +12,7 @@ public class Constants {
     public static final String UNAME = "uname";
     public static final String UID = "uid";
     public static final String HOST = "host";
+    public static final String CLASS_LIST = "classList";
 
     public static final int MAIN_COLOR = Color.parseColor("#00A6EC");
     public static final int TRAN_MAIN_COLOR = Color.parseColor("#00A6EC") & 0x80FFFFFF;
