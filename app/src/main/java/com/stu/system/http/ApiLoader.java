@@ -30,10 +30,10 @@ public class ApiLoader {
     }
 
     public static void reqSaveStu(String url, Map<String, String> mapParams, SimpleCallback<SaveStuBean> callback) {
-        ApiObserver.subscribe(getApiService().saveStu(url,mapParams), callback);
+        ApiObserver.subscribe(getApiService().saveStu(url, mapParams), callback);
     }
 
-    public static void reqGetStuMan(String url,String uid, SimpleCallback<GetStuManBean> callback) {
+    public static void reqGetStuMan(String url, String uid, SimpleCallback<GetStuManBean> callback) {
         ApiObserver.subscribe(getApiService().getStuMan(url, uid), callback);
     }
 
@@ -45,11 +45,11 @@ public class ApiLoader {
         ApiObserver.subscribe(getApiService().getActionList(url), callback);
     }
 
-    public static void reqSaveHistory(String url,  Map<String, String> mapParams, SimpleCallback<SaveHistoryBean> callback) {
+    public static void reqSaveHistory(String url, Map<String, String> mapParams, SimpleCallback<SaveHistoryBean> callback) {
         ApiObserver.subscribe(getApiService().saveHistory(url, mapParams), callback);
     }
 
-    public static void reqGetStuHisList(String url, String name, String pass, SimpleCallback<GetStuHisListBean> callback) {
-        ApiObserver.subscribe(getApiService().getStuHisList(url, name, pass), callback);
+    public static void reqGetStuHisList(String url, String sid, String pageindex, SimpleCallback<GetStuHisListBean> callback) {
+        ApiObserver.subscribe(getApiService().getStuHisList(url, sid, pageindex), callback);
     }
 }

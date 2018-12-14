@@ -2,6 +2,7 @@ package com.stu.system.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.SizeUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.stu.system.R;
+import com.stu.system.activity.SaveHistoryActivity;
+import com.stu.system.activity.StuHisListActivity;
 import com.stu.system.bean.GetClassStuBean;
 import com.stu.system.common.Constants;
 import com.stu.system.util.SPUtils;
@@ -54,12 +57,20 @@ public class ClassStuAdapter extends CommonAdapter<GetClassStuBean.ValueBean> {
             @Override
             public void onClick(View view) {
                 //添加学生上课日志
+                Intent intent = new Intent(mContext, SaveHistoryActivity.class);
+                intent.putExtra("sid", bean.getSid());
+                intent.putExtra("sname", bean.getSname());
+                mContext.startActivity(intent);
             }
         });
         getLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //获取学生日志
+                Intent intent = new Intent(mContext, StuHisListActivity.class);
+                intent.putExtra("sid", bean.getSid());
+                intent.putExtra("sname", bean.getSname());
+                mContext.startActivity(intent);
             }
         });
 

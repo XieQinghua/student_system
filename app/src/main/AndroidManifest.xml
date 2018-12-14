@@ -52,6 +52,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".activity.SaveHistoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".activity.StuHisListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.stu.system.fileprovider"

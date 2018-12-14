@@ -28,6 +28,7 @@ import com.stu.system.common.Constants;
 import com.stu.system.util.DrawableUtils;
 import com.stu.system.util.SPUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,13 +67,6 @@ public class StuAddFragment extends BaseFragment {
     private View view;
 
     private List<String> sexList;
-    //    name=姓名
-//    sex=性别（穿男女）
-//    tel=电话
-//    cid=班级ID
-//    bron=出生日期
-//    address=地址
-//    uid=当前登录用户id-
     private String name, sex, tel, cid, bron, address, uid;
     private List<ClassBean> classList = new ArrayList<>();
     private List<String> classNameList = new ArrayList<>();
@@ -160,23 +154,11 @@ public class StuAddFragment extends BaseFragment {
                 classPvOptions.show();
                 break;
             case R.id.tv_stu_birthday:
+                final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 TimePickerView pvTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {
-                        String year = date.getYear() + 1900 + "";
-                        String month = "";
-                        if (date.getMonth() + 1 < 10) {
-                            month = "0" + date.getMonth() + 1;
-                        } else {
-                            month = +date.getMonth() + 1 + "";
-                        }
-                        String day = "";
-                        if (date.getDate() + 1 < 10) {
-                            day = "0" + date.getDate() + 1;
-                        } else {
-                            day = +date.getDate() + 1 + "";
-                        }
-                        bron = year + "-" + month + "-" + day;
+                        bron = sdf.format(date);
                         tvStuBirthday.setText(bron);
                     }
                 }).setTitleColor(Constants.MAIN_COLOR)
