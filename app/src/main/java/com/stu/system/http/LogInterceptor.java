@@ -19,12 +19,12 @@ public class LogInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        Log.i(TAG, String.format("%1$s->%2$s", request.method(), java.net.URLDecoder.decode(String.valueOf(request.url()), "UTF-8")));
+        Log.i(TAG, String.format("%1$s->%2$s", request.method(), String.valueOf(request.url())));
         if (request.headers() != null) {
             Log.i(TAG, "RequestHeaders:" + request.headers());
         }
         if (request.body() != null) {
-            Log.i(TAG, "RequestBody:" + java.net.URLDecoder.decode(bodyToString(request.body()), "UTF-8"));
+            Log.i(TAG, "RequestBody:" + bodyToString(request.body()));
         }
 
         Response response = chain.proceed(chain.request());

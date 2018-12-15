@@ -28,10 +28,6 @@ import com.yanzhenjie.permission.SettingService;
 
 import java.util.List;
 
-
-/**
- * Created by YanZhenjie on 2018/1/1.
- */
 public final class PermissionSetting {
 
     private final Context mContext;

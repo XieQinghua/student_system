@@ -58,5 +58,58 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-
+    <!--白色主题样式-->
+    <style name="picture.white.style" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!--标题栏背景色-->
+        <item name="colorPrimary">@color/white</item>
+        <!--状态栏背景色-->
+        <item name="colorPrimaryDark">@color/white</item>
+        <!--是否改变图片列表界面状态栏字体颜色为黑色-->
+        <item name="picture.statusFontColor">true</item>
+        <!--返回键图标-->
+        <item name="picture.leftBack.icon">@mipmap/icon_black_arrow</item>
+        <!--标题下拉箭头-->
+        <item name="picture.arrow_down.icon">@mipmap/icon_pull_down</item>
+        <!--标题上拉箭头-->
+        <item name="picture.arrow_up.icon">@mipmap/icon_pull_up</item>
+        <!--标题文字颜色-->
+        <item name="picture.title.textColor">@color/text_main_color</item>
+        <!--标题栏右边文字-->
+        <item name="picture.right.textColor">@color/text_main_color</item>
+        <!--图片列表勾选样式-->
+        <item name="picture.checked.style">@drawable/pic_checkbox_selector</item>
+        <!--开启图片列表勾选数字模式,开启的话勾选样式要换-->
+        <item name="picture.style.checkNumMode">false</item>
+        <!--选择图片样式0/9-->
+        <item name="picture.style.numComplete">true</item>
+        <!--图片列表底部背景色-->
+        <item name="picture.bottom.bg">@color/main_bg</item>
+        <!--图片列表预览文字颜色-->
+        <item name="picture.preview.textColor">@color/blue</item>
+        <!--图片列表已完成文字颜色-->
+        <item name="picture.complete.textColor">@color/blue</item>
+        <!--图片已选数量圆点背景色-->
+        <item name="picture.num.style">@drawable/num_oval</item>
+        <!--预览界面标题文字颜色-->
+        <item name="picture.ac_preview.title.textColor">@color/text_main_color</item>
+        <!--预览界面已完成文字颜色-->
+        <item name="picture.ac_preview.complete.textColor">@color/blue</item>
+        <!--预览界面标题栏背景色-->
+        <item name="picture.ac_preview.title.bg">@color/white</item>
+        <!--预览界面底部背景色-->
+        <item name="picture.ac_preview.bottom.bg">@color/white</item>
+        <!--预览界面状态栏颜色-->
+        <item name="picture.status.color">@color/white</item>
+        <!--预览界面返回箭头-->
+        <item name="picture.preview.leftBack.icon">@mipmap/icon_black_arrow</item>
+        <!--裁剪页面标题背景色-->
+        <item name="picture.crop.toolbar.bg">@color/text_second_color</item>
+        <!--裁剪页面状态栏颜色-->
+        <item name="picture.crop.status.color">@color/text_second_color</item>
+        <!--裁剪页面标题文字颜色-->
+        <item name="picture.crop.title.color">@color/white</item>
+        <!--相册文件夹列表选中图标-->
+        <item name="picture.folder_checked_dot">@drawable/blue_oval</item>
+    </style>
 </resources>

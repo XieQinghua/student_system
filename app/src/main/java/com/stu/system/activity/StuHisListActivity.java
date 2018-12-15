@@ -31,6 +31,8 @@ public class StuHisListActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
+    @BindView(R.id.tv_empty)
+    TextView tvEmpty;
 
     private String url, sid, sname;
     private List<GetStuHisListBean.ValueBean> stuHisList = new ArrayList<>();
@@ -71,7 +73,9 @@ public class StuHisListActivity extends BaseActivity {
                 if (bean.getCode() == 1) {
                     if (bean.getValue().get(0) != null && bean.getValue().get(0).size() != 0) {
                         stuHisList = bean.getValue().get(0);
-                        //TODO 获得某学生日志列表
+                        //TODO 渲染学生日志列表
+                    } else {
+                        tvEmpty.setVisibility(View.VISIBLE);
                     }
                 }
             }

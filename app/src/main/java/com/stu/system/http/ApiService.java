@@ -9,14 +9,14 @@ import com.stu.system.bean.LoginBean;
 import com.stu.system.bean.SaveHistoryBean;
 import com.stu.system.bean.SaveStuBean;
 
-import java.util.Map;
-
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 
@@ -36,10 +36,17 @@ public interface ApiService {
                                 @Field("name") String name,
                                 @Field("pass") String pass);
 
-    @FormUrlEncoded
+    @Multipart
     @POST()
     Observable<SaveStuBean> saveStu(@Url String url,
-                                    @FieldMap Map<String, String> mapParams);
+                                    @Part MultipartBody.Part name,
+                                    @Part MultipartBody.Part sex,
+                                    @Part MultipartBody.Part tel,
+                                    @Part MultipartBody.Part cid,
+                                    @Part MultipartBody.Part bron,
+                                    @Part MultipartBody.Part address,
+                                    @Part MultipartBody.Part uid,
+                                    @Part MultipartBody.Part file);
 
     @GET()
     Observable<GetStuManBean> getStuMan(@Url String url,
@@ -52,10 +59,48 @@ public interface ApiService {
     @GET()
     Observable<GetActionListBean> getActionList(@Url String url);
 
-    @FormUrlEncoded
+    @Multipart
     @POST()
     Observable<SaveHistoryBean> saveHistory(@Url String url,
-                                            @FieldMap Map<String, String> mapParams);
+                                            @Part MultipartBody.Part sid,
+                                            @Part MultipartBody.Part date,
+                                            @Part MultipartBody.Part title,
+                                            @Part MultipartBody.Part action,
+                                            @Part MultipartBody.Part info,
+                                            @Part MultipartBody.Part imgcount,
+                                            @Part MultipartBody.Part uid,
+                                            @Part MultipartBody.Part picPartFile1,
+                                            @Part MultipartBody.Part videoFile);
+
+    @Multipart
+    @POST()
+    Observable<SaveHistoryBean> saveHistory(@Url String url,
+                                            @Part MultipartBody.Part sid,
+                                            @Part MultipartBody.Part date,
+                                            @Part MultipartBody.Part title,
+                                            @Part MultipartBody.Part action,
+                                            @Part MultipartBody.Part info,
+                                            @Part MultipartBody.Part imgcount,
+                                            @Part MultipartBody.Part uid,
+                                            @Part MultipartBody.Part picPartFile1,
+                                            @Part MultipartBody.Part picPartFile2,
+                                            @Part MultipartBody.Part videoFile);
+
+    @Multipart
+    @POST()
+    Observable<SaveHistoryBean> saveHistory(@Url String url,
+                                            @Part MultipartBody.Part sid,
+                                            @Part MultipartBody.Part date,
+                                            @Part MultipartBody.Part title,
+                                            @Part MultipartBody.Part action,
+                                            @Part MultipartBody.Part info,
+                                            @Part MultipartBody.Part imgcount,
+                                            @Part MultipartBody.Part uid,
+                                            @Part MultipartBody.Part picPartFile1,
+                                            @Part MultipartBody.Part picPartFile2,
+                                            @Part MultipartBody.Part picPartFile3,
+                                            @Part MultipartBody.Part videoFile);
+
 
     @GET()
     Observable<GetStuHisListBean> getStuHisList(@Url String url,

@@ -12,10 +12,15 @@ import com.stu.system.adapter.ClassStuAdapter;
 import com.stu.system.base.BaseFragment;
 import com.stu.system.bean.GetClassStuBean;
 import com.stu.system.common.Constants;
+import com.stu.system.eventbus.StuAddEvent;
 import com.stu.system.http.Api;
 import com.stu.system.http.ApiLoader;
 import com.stu.system.http.SimpleCallback;
 import com.stu.system.util.SPUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +54,7 @@ public class StuManClassFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        //EventBus.getDefault().register(this);
+        EventBus.getDefault().register(this);
         url = SPUtils.getInstance().getString(Constants.HOST, "");
         adapter = new ClassStuAdapter(getActivity(), R.layout.item_class_stu);
         gvClassStu.setAdapter(adapter);
@@ -80,10 +85,18 @@ public class StuManClassFragment extends BaseFragment {
 
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onStuAddEvent(StuAddEvent event) {
+        if (cid.equals(event.getCid())) {
+            getClassStu();
+        }
+    }
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
 
     @Override

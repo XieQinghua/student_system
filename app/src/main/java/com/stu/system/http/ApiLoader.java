@@ -8,7 +8,9 @@ import com.stu.system.bean.LoginBean;
 import com.stu.system.bean.SaveHistoryBean;
 import com.stu.system.bean.SaveStuBean;
 
-import java.util.Map;
+import java.util.List;
+
+import okhttp3.MultipartBody;
 
 public class ApiLoader {
 
@@ -29,8 +31,17 @@ public class ApiLoader {
         ApiObserver.subscribe(getApiService().login(url, name, pass), callback);
     }
 
-    public static void reqSaveStu(String url, Map<String, String> mapParams, SimpleCallback<SaveStuBean> callback) {
-        ApiObserver.subscribe(getApiService().saveStu(url, mapParams), callback);
+    public static void reqSaveStu(String url,
+                                  MultipartBody.Part name,
+                                  MultipartBody.Part sex,
+                                  MultipartBody.Part tel,
+                                  MultipartBody.Part cid,
+                                  MultipartBody.Part bron,
+                                  MultipartBody.Part address,
+                                  MultipartBody.Part uid,
+                                  MultipartBody.Part file,
+                                  SimpleCallback<SaveStuBean> callback) {
+        ApiObserver.subscribe(getApiService().saveStu(url, name, sex, tel, cid, bron, address, uid, file), callback);
     }
 
     public static void reqGetStuMan(String url, String uid, SimpleCallback<GetStuManBean> callback) {
@@ -45,8 +56,24 @@ public class ApiLoader {
         ApiObserver.subscribe(getApiService().getActionList(url), callback);
     }
 
-    public static void reqSaveHistory(String url, Map<String, String> mapParams, SimpleCallback<SaveHistoryBean> callback) {
-        ApiObserver.subscribe(getApiService().saveHistory(url, mapParams), callback);
+    public static void reqSaveHistory(String url,
+                                      MultipartBody.Part sid,
+                                      MultipartBody.Part date,
+                                      MultipartBody.Part title,
+                                      MultipartBody.Part action,
+                                      MultipartBody.Part info,
+                                      MultipartBody.Part imgcount,
+                                      MultipartBody.Part uid,
+                                      List<MultipartBody.Part> picPartFileList,
+                                      MultipartBody.Part videoFile,
+                                      SimpleCallback<SaveHistoryBean> callback) {
+        if (picPartFileList.size() == 1) {
+            ApiObserver.subscribe(getApiService().saveHistory(url, sid, date, title, action, info, imgcount, uid, picPartFileList.get(0), videoFile), callback);
+        } else if (picPartFileList.size() == 2) {
+            ApiObserver.subscribe(getApiService().saveHistory(url, sid, date, title, action, info, imgcount, uid, picPartFileList.get(0), picPartFileList.get(1), videoFile), callback);
+        } else if (picPartFileList.size() == 3) {
+            ApiObserver.subscribe(getApiService().saveHistory(url, sid, date, title, action, info, imgcount, uid, picPartFileList.get(0), picPartFileList.get(1), picPartFileList.get(2), videoFile), callback);
+        }
     }
 
     public static void reqGetStuHisList(String url, String sid, String pageindex, SimpleCallback<GetStuHisListBean> callback) {

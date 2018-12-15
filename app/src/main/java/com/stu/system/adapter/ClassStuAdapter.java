@@ -53,6 +53,17 @@ public class ClassStuAdapter extends CommonAdapter<GetClassStuBean.ValueBean> {
         sdvStuImg.setImageURI(Uri.parse(imgUrl));
         stuName.setText(bean.getSname());
 
+        //点击图片添加上课日志
+        sdvStuImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //添加学生上课日志
+                Intent intent = new Intent(mContext, SaveHistoryActivity.class);
+                intent.putExtra("sid", bean.getSid());
+                intent.putExtra("sname", bean.getSname());
+                mContext.startActivity(intent);
+            }
+        });
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

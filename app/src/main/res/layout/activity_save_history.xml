@@ -171,28 +171,58 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/icon_padding"
                 android:layout_marginRight="@dimen/icon_padding">
 
                 <TextView
                     android:id="@+id/tv5"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/icon_padding"
+                    android:layout_marginTop="@dimen/icon_padding"
                     android:text="上传图片"
                     android:textColor="@color/text_second_color"
                     android:textSize="@dimen/text_size_normal" />
 
-                <ImageView
-                    android:id="@+id/iv_add_pic"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/tv5"
-                    android:src="@mipmap/icon_add_pic" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv5"
+                    android:layout_marginBottom="@dimen/icon_padding"
+                    android:overScrollMode="never" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/text_tip_color" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/icon_padding"
+                android:layout_marginRight="@dimen/icon_padding">
+
+                <TextView
+                    android:id="@+id/tv6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/icon_padding"
+                    android:layout_marginTop="@dimen/icon_padding"
+                    android:text="上传视频"
+                    android:textColor="@color/text_second_color"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv6"
+                    android:layout_marginBottom="@dimen/icon_padding"
+                    android:overScrollMode="never" />
 
                 <View
                     android:layout_width="match_parent"

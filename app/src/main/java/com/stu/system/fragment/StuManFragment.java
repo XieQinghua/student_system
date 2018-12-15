@@ -2,7 +2,6 @@ package com.stu.system.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,8 +69,7 @@ public class StuManFragment extends BaseFragment {
         tvTitle.setText(R.string.stu_manage);
 
         url = SPUtils.getInstance().getString(Constants.HOST, "");
-        Log.e(TAG, "url=" + url);
-
+        //Log.e(TAG, "url=" + url);
     }
 
     @Override
@@ -108,6 +106,7 @@ public class StuManFragment extends BaseFragment {
 
                             fragments.add(new StuManClassFragment(classList.get(i).getCid()));
                         }
+                        rgClass.setVisibility(View.VISIBLE);
                         tabAdapter = new FragmentTabAdapter(getActivity(), getActivity().getSupportFragmentManager(),
                                 fragments, R.id.ll_class_content, rgClass);
                     } else {
