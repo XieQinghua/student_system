@@ -12,10 +12,11 @@
     <string name="select_stu_class">请选择所属班级</string>
     <string name="select_stu_birthday">请选择出生日期</string>
     <string name="enter_stu_address">请输入学生家庭住址</string>
+    <string name="save">保存</string>
 
     <string name="stu_manage">学生管理</string>
     <string name="stu_add">添加学生</string>
-    <string name="network_error">网络异常</string>
+    <string name="network_error">网络错误，请重试！</string>
     <string name="no_data">此界面暂无数据</string>
 
     <string name="mine">我的</string>

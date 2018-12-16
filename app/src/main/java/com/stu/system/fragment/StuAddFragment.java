@@ -407,7 +407,7 @@ public class StuAddFragment extends BaseFragment {
                     @Override
                     public void onError(Throwable e) {
                         DialogUtil.dismissProgressDialog();
-                        Toast.makeText(getActivity(), "网络错误，请重试！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), getResources().getString(R.string.network_error), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

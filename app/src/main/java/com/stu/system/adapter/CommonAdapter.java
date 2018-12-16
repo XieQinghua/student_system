@@ -67,11 +67,11 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
         ViewHolder holder = ViewHolder.get(mContext, convertView, parent, mlayoutId, position);
         convert(holder, getItem(position), position);
         View v = holder.getConvertView();
-        if (itemHeight != -1){
+        //if (itemHeight != -1){
             ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
             layoutParams.height = itemHeight;
             v.setLayoutParams(layoutParams);
-        }
+        //}
         return v;
     }
 

@@ -25,4 +25,18 @@
         android:textColor="@color/text_main_color"
         android:textSize="@dimen/text_size_big"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/selector_back"
+        android:gravity="center"
+        android:padding="@dimen/icon_padding"
+        android:text="@string/save"
+        android:textColor="@color/text_main_color"
+        android:textSize="@dimen/text_size_big"
+        android:visibility="gone" />
 </RelativeLayout>

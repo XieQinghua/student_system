@@ -1,53 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".activity.SaveHistoryActivity">
 
-    <include layout="@layout/layout_blue_head" />
-
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rl_head"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/height_top_bar"
+        android:background="@color/blue">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_back"
+            android:onClick="back"
+            android:padding="@dimen/icon_padding"
+            android:src="@mipmap/icon_white_arrow"
+            android:visibility="visible"
+            tools:ignore="OnClick" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_big"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <com.qbw.customview.RefreshLoadMoreLayout
+        android:id="@+id/refresh_load_more"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/rl_head"
-        android:orientation="vertical">
+        app:rll_bg="@color/main_bg"
+        app:rll_footer_progress="@drawable/header_progress"
+        app:rll_footer_progress_size="15dp"
+        app:rll_footer_title_size="@dimen/text_size_middle"
+        app:rll_header_progress="@drawable/header_progress"
+        app:rll_header_progress_size="15dp"
+        app:rll_header_subtitle_size="@dimen/text_size_middle"
+        app:rll_header_title_size="@dimen/text_size_middle"
+        app:rll_textcolor="@color/text_main_color">
 
-        <LinearLayout
+        <ListView
+            android:id="@+id/lv_history"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_top_bar"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:divider="@color/transparent"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
 
-            <TextView
-                android:layout_width="3dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/icon_padding"
-                android:background="@drawable/blue_shape" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/icon_padding"
-                android:text="日志"
-                android:textColor="@color/tab_text_color"
-                android:textSize="@dimen/text_size_normal"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginLeft="@dimen/icon_padding"
-            android:layout_marginRight="@dimen/icon_padding"
-            android:background="@color/text_tip_color" />
-
-    </LinearLayout>
+    </com.qbw.customview.RefreshLoadMoreLayout>
 
     <TextView
         android:id="@+id/tv_empty"

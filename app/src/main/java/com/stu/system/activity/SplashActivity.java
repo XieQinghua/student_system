@@ -5,11 +5,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.WindowManager;
+import android.widget.TextView;
 
+import com.blankj.utilcode.util.AppUtils;
 import com.stu.system.R;
 import com.stu.system.base.BaseActivity;
 import com.stu.system.common.Constants;
 import com.stu.system.util.SPUtils;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -17,6 +22,10 @@ import com.stu.system.util.SPUtils;
  * status bar and navigation/system bar) with user interaction.
  */
 public class SplashActivity extends BaseActivity {
+    @BindView(R.id.tv_app_name)
+    TextView tvAppName;
+    @BindView(R.id.tv_version_name)
+    TextView tvVersionName;
     private Runnable runnable;
     private Handler handler;
 
@@ -36,6 +45,12 @@ public class SplashActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_splash);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        ButterKnife.bind(this);
+
+        tvAppName.setText(AppUtils.getAppName());
+        tvVersionName.setText("v" + AppUtils.getAppVersionName());
+
         runnable = new Runnable() {
             @Override
             public void run() {

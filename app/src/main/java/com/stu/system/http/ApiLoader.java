@@ -66,13 +66,14 @@ public class ApiLoader {
                                       MultipartBody.Part uid,
                                       List<MultipartBody.Part> picPartFileList,
                                       MultipartBody.Part videoFile,
+                                      MultipartBody.Part videoThumbFile,
                                       SimpleCallback<SaveHistoryBean> callback) {
         if (picPartFileList.size() == 1) {
-            ApiObserver.subscribe(getApiService().saveHistory(url, sid, date, title, action, info, imgcount, uid, picPartFileList.get(0), videoFile), callback);
+            ApiObserver.subscribe(getApiService().saveHistory(url, sid, date, title, action, info, imgcount, uid, picPartFileList.get(0), videoFile, videoThumbFile), callback);
         } else if (picPartFileList.size() == 2) {
-            ApiObserver.subscribe(getApiService().saveHistory(url, sid, date, title, action, info, imgcount, uid, picPartFileList.get(0), picPartFileList.get(1), videoFile), callback);
+            ApiObserver.subscribe(getApiService().saveHistory(url, sid, date, title, action, info, imgcount, uid, picPartFileList.get(0), picPartFileList.get(1), videoFile, videoThumbFile), callback);
         } else if (picPartFileList.size() == 3) {
-            ApiObserver.subscribe(getApiService().saveHistory(url, sid, date, title, action, info, imgcount, uid, picPartFileList.get(0), picPartFileList.get(1), picPartFileList.get(2), videoFile), callback);
+            ApiObserver.subscribe(getApiService().saveHistory(url, sid, date, title, action, info, imgcount, uid, picPartFileList.get(0), picPartFileList.get(1), picPartFileList.get(2), videoFile, videoThumbFile), callback);
         }
     }
 

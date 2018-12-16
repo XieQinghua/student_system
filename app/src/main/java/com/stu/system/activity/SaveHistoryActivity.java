@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -45,14 +47,14 @@ import com.stu.system.permission.DefaultRationale;
 import com.stu.system.permission.PermissionSetting;
 import com.stu.system.util.DialogUtil;
 import com.stu.system.util.DrawableUtils;
-import com.stu.system.util.LightStatusBarUtils;
 import com.stu.system.util.SPUtils;
-import com.stu.system.util.ToolbarUtil;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -89,7 +91,7 @@ public class SaveHistoryActivity extends BaseActivity {
 
     private GridImageAdapter picAdapter, videoAdapter;
 
-    private String url, sid, sname, actionShowDate, actionDate, actionName, actionTitle, action, actionInfo, uid;
+    private String url, sid, sname, actionDate, actionName, actionTitle, action, actionInfo, uid;
 
     private List<GetActionListBean.ValueBean> actionBeanList = new ArrayList<>();
     private List<String> actionList = new ArrayList<>();
@@ -106,9 +108,6 @@ public class SaveHistoryActivity extends BaseActivity {
 
     @SuppressLint("NewApi")
     private void initView() {
-        LightStatusBarUtils.setLightStatusBar(SaveHistoryActivity.this, true);
-        ToolbarUtil.setColor(SaveHistoryActivity.this, getResources().getColor(R.color.blue));
-
         final GradientDrawable checkedShape = DrawableUtils.getShape(GradientDrawable.RECTANGLE, Constants.TRAN_MAIN_COLOR, SizeUtils.dp2px(25), 0, Constants.TRAN_MAIN_COLOR);
         final GradientDrawable uncheckedShape = DrawableUtils.getShape(GradientDrawable.RECTANGLE, Constants.MAIN_COLOR, SizeUtils.dp2px(25), 0, Constants.MAIN_COLOR);
         final StateListDrawable selector = DrawableUtils.getSelector(checkedShape, uncheckedShape);
@@ -221,20 +220,19 @@ public class SaveHistoryActivity extends BaseActivity {
         hideKeyboard(view);
         switch (view.getId()) {
             case R.id.tv_date:
-                final SimpleDateFormat sdfShow = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+                final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 TimePickerView pvDate = new TimePickerBuilder(SaveHistoryActivity.this, new OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {
-                        actionShowDate = sdfShow.format(date);
                         actionDate = sdf.format(date);
-                        tvDate.setText(actionShowDate);
+                        tvDate.setText(actionDate);
                         if (!TextUtils.isEmpty(actionName)) {
-                            tvActionTitle.setText(actionShowDate + " " + actionName);
-                            actionTitle = actionShowDate + actionName;
+                            tvActionTitle.setText(actionDate + " " + actionName);
+                            actionTitle = actionDate + actionName;
                         }
                     }
-                }).setType(new boolean[]{true, true, true, true, true, false})
+                })
+                        //.setType(new boolean[]{true, true, true, true, true, false})
                         .setTitleColor(Constants.MAIN_COLOR)
                         .setCancelColor(Constants.MAIN_COLOR)
                         .setSubmitColor(Constants.MAIN_COLOR)
@@ -248,9 +246,9 @@ public class SaveHistoryActivity extends BaseActivity {
                         actionName = actionList.get(options1);
                         action = actionBeanList.get(options1).getAid();
                         tvAction.setText(actionName);
-                        if (!TextUtils.isEmpty(actionShowDate)) {
-                            tvActionTitle.setText(actionShowDate + " " + actionName);
-                            actionTitle = actionShowDate + actionName;
+                        if (!TextUtils.isEmpty(actionDate)) {
+                            tvActionTitle.setText(actionDate + " " + actionName);
+                            actionTitle = actionDate + actionName;
                         }
                     }
                 }).setTitleColor(Constants.MAIN_COLOR)
@@ -305,13 +303,17 @@ public class SaveHistoryActivity extends BaseActivity {
         for (int i = 0; i < picPathList.size(); i++) {
             File file = new File(picPathList.get(i));
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
-            MultipartBody.Part picPartFile = MultipartBody.Part.createFormData("picHis" + i, file.getName(), requestBody);
+            MultipartBody.Part picPartFile = MultipartBody.Part.createFormData("mFile0" + (i + 1) + "; filename=" + file.getName(), file.getName(), requestBody);
             picPartFileList.add(picPartFile);
         }
         //视频参数
         File videoFile = new File(videoPath);
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/octet-stream"), videoFile);
-        MultipartBody.Part videoPartFile = MultipartBody.Part.createFormData("video", videoFile.getName(), requestBody);
+        RequestBody videoRequestBody = RequestBody.create(MediaType.parse("application/octet-stream"), videoFile);
+        MultipartBody.Part videoPartFile = MultipartBody.Part.createFormData("mFile04; filename=" + videoFile.getName(), videoFile.getName(), videoRequestBody);
+        //视频缩略图参数
+        File videoThumbFile = new File(videoThumbPath);
+        RequestBody videoThumbRequestBody = RequestBody.create(MediaType.parse("application/octet-stream"), videoThumbFile);
+        MultipartBody.Part videoThumbPartFile = MultipartBody.Part.createFormData("mFile05; filename=" + videoThumbFile.getName(), videoThumbFile.getName(), videoThumbRequestBody);
 
         ApiLoader.reqSaveHistory(url + Api.SAVE_HISTORY,
                 partSid,
@@ -323,6 +325,7 @@ public class SaveHistoryActivity extends BaseActivity {
                 partUid,
                 picPartFileList,
                 videoPartFile,
+                videoThumbPartFile,
                 new SimpleCallback<SaveHistoryBean>() {
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
@@ -343,7 +346,7 @@ public class SaveHistoryActivity extends BaseActivity {
                     @Override
                     public void onError(Throwable e) {
                         DialogUtil.dismissProgressDialog();
-                        Toast.makeText(SaveHistoryActivity.this, "网络错误，请重试！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SaveHistoryActivity.this, getResources().getString(R.string.network_error), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -406,7 +409,7 @@ public class SaveHistoryActivity extends BaseActivity {
     private String picPath;
 
     private void openAlbumGetPic() {
-        Log.e(TAG, "获取图片=======");
+        Log.d(TAG, "获取图片=======");
         PictureSelector.create(SaveHistoryActivity.this)
                 .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()
                 .theme(R.style.picture_white_style)// 主题样式设置 具体参考 values/styles
@@ -426,7 +429,7 @@ public class SaveHistoryActivity extends BaseActivity {
                 .glideOverride(240, 240)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .isGif(false)// 是否显示gif图片
                 .openClickSound(true)// 是否开启点击声音
-                //.selectionMedia(selectList)// 是否传入已选图片
+                .selectionMedia(selectPicList)// 是否传入已选图片
                 .previewEggs(false)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中)
                 .minimumCompressSize(100)// 小于100kb的图片不压缩
                 //.compressMaxKB()//压缩最大值kb compressGrade()为Luban.CUSTOM_GEAR有效
@@ -442,9 +445,10 @@ public class SaveHistoryActivity extends BaseActivity {
      */
     private List<LocalMedia> selectVideoList = new ArrayList<>();
     private String videoPath;
+    private String videoThumbPath;
 
     private void openAlbumGetVideo() {
-        Log.e(TAG, "获取视频=======");
+        Log.d(TAG, "获取视频=======");
         PictureSelector.create(SaveHistoryActivity.this)
                 .openGallery(PictureMimeType.ofVideo())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()
                 .theme(R.style.picture_white_style)// 主题样式设置 具体参考 values/styles
@@ -464,7 +468,7 @@ public class SaveHistoryActivity extends BaseActivity {
                 .glideOverride(240, 240)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                 .isGif(false)// 是否显示gif图片
                 .openClickSound(true)// 是否开启点击声音
-                //.selectionMedia(selectList)// 是否传入已选图片
+                .selectionMedia(selectVideoList)// 是否传入已选图片
                 //.previewEggs(false)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中)
                 //.compressMaxKB()//压缩最大值kb compressGrade()为Luban.CUSTOM_GEAR有效
                 //.compressWH() // 压缩宽高比 compressGrade()为Luban.CUSTOM_GEAR有效
@@ -491,13 +495,16 @@ public class SaveHistoryActivity extends BaseActivity {
                     picAdapter.notifyDataSetChanged();
                     break;
                 case CHOOSE_VIDEO:
-                    // 图片选择
+                    // 视频选择
                     selectVideoList = PictureSelector.obtainMultipleResult(data);
                     videoPath = selectVideoList.get(0).getPath();
-                    Log.e(TAG, "选择视频path=" + videoPath);
-                    for (LocalMedia lm : selectVideoList) {
-                        Log.e(TAG, "视频path=" + lm.getPath() + ";\n压缩视频path=" + lm.getCompressPath());
-                    }
+                    Log.e(TAG, "视频path=" + videoPath);
+                    saveBitmap(getVideoThumb(videoPath), Constants.VIDEO_THUMB_IMG + "2018");
+                    videoThumbPath = Constants.VIDEO_THUMB_IMG + "2018.png";
+                    Log.e(TAG, "视频缩略图path=" + videoThumbPath);
+                    //for (LocalMedia lm : selectVideoList) {
+                    //    Log.e(TAG, "视频path=" + lm.getPath() + ";\n压缩视频path=" + lm.getCompressPath());
+                    //}
                     videoAdapter.setList(selectVideoList);
                     videoAdapter.notifyDataSetChanged();
                     break;
@@ -505,5 +512,42 @@ public class SaveHistoryActivity extends BaseActivity {
                     break;
             }
         }
+    }
+
+    /**
+     * 获取视频文件截图
+     *
+     * @param path 视频文件的路径
+     * @return Bitmap 返回获取的Bitmap
+     */
+    public static Bitmap getVideoThumb(String path) {
+        MediaMetadataRetriever media = new MediaMetadataRetriever();
+        media.setDataSource(path);
+        return media.getFrameAtTime();
+    }
+
+    /**
+     * 保存bitmap到本地
+     *
+     * @param mBitmap
+     * @return
+     */
+    public static String saveBitmap(Bitmap mBitmap, String path) {
+        File filePic;
+        try {
+            filePic = new File(path + ".png");
+            if (!filePic.exists()) {
+                filePic.getParentFile().mkdirs();
+                filePic.createNewFile();
+            }
+            FileOutputStream fos = new FileOutputStream(filePic);
+            mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return filePic.getAbsolutePath();
     }
 }

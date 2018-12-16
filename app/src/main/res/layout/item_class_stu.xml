@@ -34,6 +34,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/sdv_stu_img"
+                android:ellipsize="end"
+                android:ems="6"
+                android:lines="1"
                 android:paddingBottom="10dp"
                 android:paddingLeft="5dp"
                 android:paddingTop="10dp"
@@ -56,6 +59,7 @@
                 android:text="编辑"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/text_size_middle"
+                android:visibility="gone"
                 app:layout_constraintRight_toLeftOf="@+id/tv_get_log"
                 app:layout_constraintTop_toBottomOf="@+id/sdv_stu_img" />
 

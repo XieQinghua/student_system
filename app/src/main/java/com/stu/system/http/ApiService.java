@@ -70,7 +70,8 @@ public interface ApiService {
                                             @Part MultipartBody.Part imgcount,
                                             @Part MultipartBody.Part uid,
                                             @Part MultipartBody.Part picPartFile1,
-                                            @Part MultipartBody.Part videoFile);
+                                            @Part MultipartBody.Part videoFile,
+                                            @Part MultipartBody.Part videoThumbFile);
 
     @Multipart
     @POST()
@@ -84,7 +85,8 @@ public interface ApiService {
                                             @Part MultipartBody.Part uid,
                                             @Part MultipartBody.Part picPartFile1,
                                             @Part MultipartBody.Part picPartFile2,
-                                            @Part MultipartBody.Part videoFile);
+                                            @Part MultipartBody.Part videoFile,
+                                            @Part MultipartBody.Part videoThumbFile);
 
     @Multipart
     @POST()
@@ -99,7 +101,8 @@ public interface ApiService {
                                             @Part MultipartBody.Part picPartFile1,
                                             @Part MultipartBody.Part picPartFile2,
                                             @Part MultipartBody.Part picPartFile3,
-                                            @Part MultipartBody.Part videoFile);
+                                            @Part MultipartBody.Part videoFile,
+                                            @Part MultipartBody.Part videoThumbFile);
 
 
     @GET()

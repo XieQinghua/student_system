@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/icon_padding"
+        android:layout_marginRight="@dimen/icon_padding"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_his"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@+id/rl_line"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_his_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2018.08.24上课"
+                android:textColor="@color/text_main_color"
+                android:textSize="@dimen/text_size_normal" />
+
+            <TextView
+                android:id="@+id/tv_his_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_his_name"
+                android:layout_marginTop="10dp"
+                android:text="日志文字说明日志文字说明日志文字说明"
+                android:textColor="@color/text_second_color"
+                android:textSize="@dimen/text_size_normal"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingBottom="24dp">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp"
+                app:cardMaxElevation="1dp"
+                app:cardUseCompatPadding="true">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv_img1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    fresco:placeholderImage="@mipmap/icon_empty"
+                    fresco:placeholderImageScaleType="centerCrop"
+                    fresco:roundAsCircle="false" />
+
+                <!--<ImageView
+                    android:id="@+id/iv_play_video1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_play_video"
+                    android:visibility="gone" />-->
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp"
+                app:cardMaxElevation="1dp"
+                app:cardUseCompatPadding="true">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv_img2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    fresco:placeholderImage="@mipmap/icon_empty"
+                    fresco:placeholderImageScaleType="centerCrop"
+                    fresco:roundAsCircle="false" />
+
+                <ImageView
+                    android:id="@+id/iv_play_video2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_play_video"
+                    android:visibility="gone" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp"
+                app:cardMaxElevation="1dp"
+                app:cardUseCompatPadding="true">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv_img3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    fresco:placeholderImage="@mipmap/icon_empty"
+                    fresco:placeholderImageScaleType="centerCrop"
+                    fresco:roundAsCircle="false" />
+
+                <ImageView
+                    android:id="@+id/iv_play_video3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_play_video"
+                    android:visibility="gone" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:visibility="invisible"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp"
+                app:cardMaxElevation="1dp"
+                app:cardUseCompatPadding="true">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sdv_img4"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    fresco:placeholderImage="@mipmap/icon_empty"
+                    fresco:placeholderImageScaleType="centerCrop"
+                    fresco:roundAsCircle="false" />
+
+                <ImageView
+                    android:id="@+id/iv_play_video4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_play_video"
+                    android:visibility="gone" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
