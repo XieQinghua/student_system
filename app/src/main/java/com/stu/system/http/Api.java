@@ -33,4 +33,9 @@ public class Api {
      * 获得某学生日志
      */
     public static final String GET_STU_HISLIST = "/Api/GetStuHisList";
+
+    /**
+     * 删除某学生日志
+     */
+    public static final String DEL_HIS = "/Api/DelHis";
 }

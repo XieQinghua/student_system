@@ -182,7 +182,7 @@ public class ImgPreviewActivity extends BaseActivity {
     private void showDownLoadDialog(final String path) {
         final CustomDialog dialog = new CustomDialog(ImgPreviewActivity.this,
                 ScreenUtils.getScreenWidth(ImgPreviewActivity.this) * 3 / 4,
-                ScreenUtils.getScreenHeight(ImgPreviewActivity.this) / 4,
+                ScreenUtils.getScreenHeight(ImgPreviewActivity.this) / 5,
                 R.layout.picture_base_dialog, R.style.Theme_dialog);
         Button btn_cancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btn_commit = (Button) dialog.findViewById(R.id.btn_commit);

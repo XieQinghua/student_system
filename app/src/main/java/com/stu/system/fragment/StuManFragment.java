@@ -1,5 +1,6 @@
 package com.stu.system.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,11 +19,16 @@ import com.stu.system.base.BaseFragment;
 import com.stu.system.bean.ClassBean;
 import com.stu.system.bean.GetStuManBean;
 import com.stu.system.common.Constants;
+import com.stu.system.eventbus.ShowStuManClassEvent;
 import com.stu.system.http.Api;
 import com.stu.system.http.ApiLoader;
 import com.stu.system.http.SimpleCallback;
 import com.stu.system.util.DialogUtil;
 import com.stu.system.util.SPUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +57,7 @@ public class StuManFragment extends BaseFragment {
     private View view;
 
     private List<Fragment> fragments = new ArrayList<>();
+    private List<RadioButton> rbList = new ArrayList<>();
     public static FragmentTabAdapter tabAdapter;
 
     private String url;
@@ -64,7 +71,7 @@ public class StuManFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        //EventBus.getDefault().register(this);
+        EventBus.getDefault().register(this);
         ivBack.setVisibility(View.INVISIBLE);
         tvTitle.setText(R.string.stu_manage);
 
@@ -105,6 +112,7 @@ public class StuManFragment extends BaseFragment {
                             }
 
                             fragments.add(new StuManClassFragment(classList.get(i).getCid()));
+                            rbList.add(rb);
                         }
                         rgClass.setVisibility(View.VISIBLE);
                         tabAdapter = new FragmentTabAdapter(getActivity(), getActivity().getSupportFragmentManager(),
@@ -140,7 +148,14 @@ public class StuManFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
+    }
+
+    @SuppressLint("ResourceType")
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onShowStuManEvent(ShowStuManClassEvent event) {
+        rbList.get(event.getClassIndex()).setChecked(true);
+        tabAdapter.showTab(event.getClassIndex());
     }
 
     @Override

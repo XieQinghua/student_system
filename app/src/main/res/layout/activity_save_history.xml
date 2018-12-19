@@ -131,16 +131,17 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="@dimen/icon_padding"
                 android:layout_marginRight="@dimen/icon_padding">
 
                 <TextView
                     android:id="@+id/tv4"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/icon_padding"
+                    android:paddingTop="@dimen/icon_padding"
                     android:text="详细说明"
                     android:textColor="@color/text_second_color"
                     android:textSize="@dimen/text_size_normal" />
@@ -152,11 +153,14 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/tv4"
                     android:background="@null"
+                    android:gravity="top|left"
                     android:hint="请输入详细说明"
                     android:imeOptions="actionDone"
-                    android:inputType="text"
+                    android:inputType="textMultiLine"
+                    android:maxLines="4"
+                    android:paddingBottom="@dimen/icon_padding"
                     android:paddingLeft="20dp"
-                    android:singleLine="true"
+                    android:paddingTop="@dimen/icon_padding"
                     android:textColor="@color/text_main_color"
                     android:textColorHint="@color/text_tip_color"
                     android:textCursorDrawable="@drawable/color_cursor"
@@ -236,9 +240,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="50dp"
+                android:layout_margin="50dp"
                 android:gravity="center"
                 android:text="@string/save"
                 android:textColor="@color/white"

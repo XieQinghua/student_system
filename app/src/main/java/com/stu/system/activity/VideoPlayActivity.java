@@ -239,7 +239,7 @@ public class VideoPlayActivity extends BaseActivity implements MediaPlayer.OnErr
     private void showDownLoadDialog(final String path) {
         final CustomDialog dialog = new CustomDialog(VideoPlayActivity.this,
                 ScreenUtils.getScreenWidth(VideoPlayActivity.this) * 3 / 4,
-                ScreenUtils.getScreenHeight(VideoPlayActivity.this) / 4,
+                ScreenUtils.getScreenHeight(VideoPlayActivity.this) / 5,
                 R.layout.picture_base_dialog, R.style.Theme_dialog);
         Button btn_cancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btn_commit = (Button) dialog.findViewById(R.id.btn_commit);

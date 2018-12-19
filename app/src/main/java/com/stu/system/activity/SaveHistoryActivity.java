@@ -541,7 +541,7 @@ public class SaveHistoryActivity extends BaseActivity {
                 filePic.createNewFile();
             }
             FileOutputStream fos = new FileOutputStream(filePic);
-            mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            mBitmap.compress(Bitmap.CompressFormat.PNG, 50, fos);
             fos.flush();
             fos.close();
         } catch (IOException e) {

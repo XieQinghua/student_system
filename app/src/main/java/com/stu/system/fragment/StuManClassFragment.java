@@ -16,6 +16,7 @@ import com.stu.system.eventbus.StuAddEvent;
 import com.stu.system.http.Api;
 import com.stu.system.http.ApiLoader;
 import com.stu.system.http.SimpleCallback;
+import com.stu.system.util.DialogUtil;
 import com.stu.system.util.SPUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -66,6 +67,7 @@ public class StuManClassFragment extends BaseFragment {
     }
 
     private void getClassStu() {
+        DialogUtil.showProgressDialog(getActivity(), "");
         ApiLoader.reqGetClassStu(url + Api.GET_CLASS_STU, cid, new SimpleCallback<GetClassStuBean>() {
             @Override
             public void onNext(GetClassStuBean bean) {
@@ -76,6 +78,16 @@ public class StuManClassFragment extends BaseFragment {
                         adapter.notifyDataSetChanged();
                     }
                 }
+            }
+
+            @Override
+            public void onCompleted() {
+                DialogUtil.dismissProgressDialog();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                DialogUtil.dismissProgressDialog();
             }
         });
     }

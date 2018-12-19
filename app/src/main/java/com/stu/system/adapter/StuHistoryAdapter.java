@@ -1,21 +1,35 @@
 package com.stu.system.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SizeUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.luck.picture.lib.dialog.CustomDialog;
+import com.luck.picture.lib.tools.ScreenUtils;
 import com.stu.system.R;
 import com.stu.system.activity.ImgPreviewActivity;
 import com.stu.system.activity.VideoPlayActivity;
+import com.stu.system.bean.BaseBean;
 import com.stu.system.bean.GetStuHisListBean;
 import com.stu.system.common.Constants;
+import com.stu.system.http.Api;
+import com.stu.system.http.ApiLoader;
+import com.stu.system.http.SimpleCallback;
+import com.stu.system.util.DialogUtil;
+import com.stu.system.util.DrawableUtils;
 import com.stu.system.util.SPUtils;
 
 import java.util.List;
@@ -41,6 +55,7 @@ public class StuHistoryAdapter extends CommonAdapter<GetStuHisListBean.ValueBean
 
         TextView hisName = holder.getView(R.id.tv_his_name);
         TextView hisInfo = holder.getView(R.id.tv_his_info);
+        TextView del = holder.getView(R.id.tv_del);
         CardView cv1 = holder.getView(R.id.cv1);
         SimpleDraweeView sdv_img1 = holder.getView(R.id.sdv_img1);
         //ImageView playVideo1 = holder.getView(R.id.iv_play_video1);
@@ -58,6 +73,21 @@ public class StuHistoryAdapter extends CommonAdapter<GetStuHisListBean.ValueBean
         ImageView playVideo4 = holder.getView(R.id.iv_play_video4);
 
         hisName.setText(bean.getTitle());
+
+        int orangeColor = Color.parseColor("#FF6600");
+        int tranOrangeColor = Color.parseColor("#FF6600") & 0x80FFFFFF;
+        int whiteColor = Color.parseColor("#FFFFFF");
+        int tranWhiteColor = Color.parseColor("#FFFFFF") & 0x80FFFFFF;
+        GradientDrawable checkedShape = DrawableUtils.getShape(GradientDrawable.RECTANGLE, tranWhiteColor, SizeUtils.dp2px(10), SizeUtils.dp2px(1), tranOrangeColor);
+        GradientDrawable uncheckedShape = DrawableUtils.getShape(GradientDrawable.RECTANGLE, whiteColor, SizeUtils.dp2px(10), SizeUtils.dp2px(1), orangeColor);
+        StateListDrawable selector = DrawableUtils.getSelector(checkedShape, uncheckedShape);
+        del.setBackground(selector);
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDelDialog(bean.getId(), position);
+            }
+        });
         if (!TextUtils.isEmpty(bean.getIntro())) {
             hisInfo.setText(bean.getIntro());
             hisInfo.setVisibility(View.VISIBLE);
@@ -176,6 +206,59 @@ public class StuHistoryAdapter extends CommonAdapter<GetStuHisListBean.ValueBean
                 intent.putExtra("videoName", name);
                 intent.putExtra("videoUrl", url);
                 mContext.startActivity(intent);
+            }
+        });
+    }
+
+    private void showDelDialog(final String hid, final int position) {
+        final CustomDialog dialog = new CustomDialog(mContext,
+                ScreenUtils.getScreenWidth(mContext) * 3 / 4,
+                ScreenUtils.getScreenHeight(mContext) / 5,
+                R.layout.picture_base_dialog, R.style.Theme_dialog);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.btn_cancel);
+        Button btn_commit = (Button) dialog.findViewById(R.id.btn_commit);
+        TextView tv_title = (TextView) dialog.findViewById(R.id.tv_title);
+        TextView tv_content = (TextView) dialog.findViewById(R.id.tv_content);
+        tv_title.setText("温馨提示");
+        tv_content.setText("是否删除该条日志？");
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        btn_commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                delHis(hid, position);
+            }
+        });
+        dialog.show();
+    }
+
+    private void delHis(final String hid, final int position) {
+        DialogUtil.showProgressDialog((Activity) mContext, "");
+        String url = SPUtils.getInstance().getString(Constants.HOST, "");
+
+        ApiLoader.reqDelHis(url + Api.DEL_HIS, hid, new SimpleCallback<BaseBean>() {
+            @Override
+            public void onNext(BaseBean bean) {
+                if (bean.getCode() == 1) {
+                    mDatas.remove(position);
+                    setData(mDatas);
+                    notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCompleted() {
+                DialogUtil.dismissProgressDialog();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                DialogUtil.dismissProgressDialog();
             }
         });
     }

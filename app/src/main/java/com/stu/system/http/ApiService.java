@@ -1,6 +1,7 @@
 package com.stu.system.http;
 
 
+import com.stu.system.bean.BaseBean;
 import com.stu.system.bean.GetActionListBean;
 import com.stu.system.bean.GetClassStuBean;
 import com.stu.system.bean.GetStuHisListBean;
@@ -109,5 +110,9 @@ public interface ApiService {
     Observable<GetStuHisListBean> getStuHisList(@Url String url,
                                                 @Query("sid") String sid,
                                                 @Query("pageindex") String pageindex);
+
+    @GET()
+    Observable<BaseBean> delHis(@Url String url,
+                                @Query("hid") String hid);
 
 }

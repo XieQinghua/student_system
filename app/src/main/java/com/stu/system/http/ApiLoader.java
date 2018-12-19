@@ -1,5 +1,6 @@
 package com.stu.system.http;
 
+import com.stu.system.bean.BaseBean;
 import com.stu.system.bean.GetActionListBean;
 import com.stu.system.bean.GetClassStuBean;
 import com.stu.system.bean.GetStuHisListBean;
@@ -79,5 +80,9 @@ public class ApiLoader {
 
     public static void reqGetStuHisList(String url, String sid, String pageindex, SimpleCallback<GetStuHisListBean> callback) {
         ApiObserver.subscribe(getApiService().getStuHisList(url, sid, pageindex), callback);
+    }
+
+    public static void reqDelHis(String url, String hid, SimpleCallback<BaseBean> callback) {
+        ApiObserver.subscribe(getApiService().delHis(url, hid), callback);
     }
 }

@@ -41,6 +41,7 @@ import com.stu.system.base.BaseFragment;
 import com.stu.system.bean.ClassBean;
 import com.stu.system.bean.SaveStuBean;
 import com.stu.system.common.Constants;
+import com.stu.system.eventbus.ShowStuManClassEvent;
 import com.stu.system.eventbus.StuAddEvent;
 import com.stu.system.http.Api;
 import com.stu.system.http.ApiLoader;
@@ -107,6 +108,7 @@ public class StuAddFragment extends BaseFragment {
     private String url, name, sex, tel, cid, bron, address, uid;
     private List<ClassBean> classList = new ArrayList<>();
     private List<String> classNameList = new ArrayList<>();
+    private int classIndex;
 
     @Override
     protected View onFragmentCreated(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -210,6 +212,7 @@ public class StuAddFragment extends BaseFragment {
                     @Override
                     public void onOptionsSelect(int options1, int option2, int options3, View v) {
                         cid = classList.get(options1).getCid();
+                        classIndex = options1;
                         tvStuClass.setText(classNameList.get(options1));
                     }
                 }).setTitleColor(Constants.MAIN_COLOR)
@@ -306,7 +309,7 @@ public class StuAddFragment extends BaseFragment {
                 .compress(true)
                 .isCamera(true)// 是否显示拍照按钮
                 .enableCrop(true)// 是否裁剪
-                .withAspectRatio(4, 3)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                .withAspectRatio(1, 1)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
                 .freeStyleCropEnabled(true)// 裁剪框是否可拖拽
                 .circleDimmedLayer(false)// 是否圆形裁剪
                 .showCropFrame(true)// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
@@ -390,8 +393,8 @@ public class StuAddFragment extends BaseFragment {
                     @Override
                     public void onNext(SaveStuBean bean) {
                         if (bean.getCode() == 1) {
-                            Toast.makeText(getActivity(), "添加成功", Toast.LENGTH_SHORT).show();
                             EventBus.getDefault().post(new StuAddEvent(cid));
+                            EventBus.getDefault().post(new ShowStuManClassEvent(classIndex));
                             btnSave.setBackground(checkedShape);
                             btnSave.setClickable(false);
                         } else {

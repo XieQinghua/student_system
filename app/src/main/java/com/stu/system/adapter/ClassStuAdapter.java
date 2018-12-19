@@ -45,7 +45,7 @@ public class ClassStuAdapter extends CommonAdapter<GetClassStuBean.ValueBean> {
 
         ViewGroup.LayoutParams para = sdvStuImg.getLayoutParams();
         para.width = (ScreenUtils.getScreenWidth() - SizeUtils.dp2px(29)) * 1 / 2;
-        para.height = para.width * 3 / 4;
+        para.height = para.width;
         //http://fuck.biegral.com/uploads/stuheadimg/b1aac8bc-300e-47a5-baad-c8d13776dd3f.jpg
         String imgUrl = SPUtils.getInstance().getString(Constants.HOST, "") +
                 "/uploads/stuheadimg/" +
