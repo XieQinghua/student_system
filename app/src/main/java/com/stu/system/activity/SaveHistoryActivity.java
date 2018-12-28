@@ -283,10 +283,11 @@ public class SaveHistoryActivity extends BaseActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(videoPath)) {
-            Toast.makeText(SaveHistoryActivity.this, "请选择视频！", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        //视频是非必传参数
+//        if (TextUtils.isEmpty(videoPath)) {
+//            Toast.makeText(SaveHistoryActivity.this, "请选择视频！", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         DialogUtil.showProgressDialog(SaveHistoryActivity.this, "");
 
@@ -306,14 +307,18 @@ public class SaveHistoryActivity extends BaseActivity {
             MultipartBody.Part picPartFile = MultipartBody.Part.createFormData("mFile0" + (i + 1) + "; filename=" + file.getName(), file.getName(), requestBody);
             picPartFileList.add(picPartFile);
         }
-        //视频参数
-        File videoFile = new File(videoPath);
-        RequestBody videoRequestBody = RequestBody.create(MediaType.parse("application/octet-stream"), videoFile);
-        MultipartBody.Part videoPartFile = MultipartBody.Part.createFormData("mFile04; filename=" + videoFile.getName(), videoFile.getName(), videoRequestBody);
-        //视频缩略图参数
-        File videoThumbFile = new File(videoThumbPath);
-        RequestBody videoThumbRequestBody = RequestBody.create(MediaType.parse("application/octet-stream"), videoThumbFile);
-        MultipartBody.Part videoThumbPartFile = MultipartBody.Part.createFormData("mFile05; filename=" + videoThumbFile.getName(), videoThumbFile.getName(), videoThumbRequestBody);
+        MultipartBody.Part videoPartFile = null;
+        MultipartBody.Part videoThumbPartFile = null;
+        if (!TextUtils.isEmpty(videoPath)) {
+            //视频参数
+            File videoFile = new File(videoPath);
+            RequestBody videoRequestBody = RequestBody.create(MediaType.parse("application/octet-stream"), videoFile);
+            videoPartFile = MultipartBody.Part.createFormData("mFile04; filename=" + videoFile.getName(), videoFile.getName(), videoRequestBody);
+            //视频缩略图参数
+            File videoThumbFile = new File(videoThumbPath);
+            RequestBody videoThumbRequestBody = RequestBody.create(MediaType.parse("application/octet-stream"), videoThumbFile);
+            videoThumbPartFile = MultipartBody.Part.createFormData("mFile05; filename=" + videoThumbFile.getName(), videoThumbFile.getName(), videoThumbRequestBody);
+        }
 
         ApiLoader.reqSaveHistory(url + Api.SAVE_HISTORY,
                 partSid,
