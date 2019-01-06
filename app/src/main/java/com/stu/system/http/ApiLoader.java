@@ -85,4 +85,8 @@ public class ApiLoader {
     public static void reqDelHis(String url, String hid, SimpleCallback<BaseBean> callback) {
         ApiObserver.subscribe(getApiService().delHis(url, hid), callback);
     }
+
+    public static void reqGetConn(String url, SimpleCallback<BaseBean> callback) {
+        ApiObserver.subscribe(getApiService().getConn(url), callback);
+    }
 }

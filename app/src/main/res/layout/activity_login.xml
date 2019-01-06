@@ -113,19 +113,39 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_normal" />
 
-        <TextView
-            android:id="@+id/tv_login_set"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:gravity="center"
-            android:paddingBottom="15dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="15dp"
-            android:text="登录设置"
-            android:textColor="@color/text_common_color"
-            android:textSize="@dimen/text_size_normal" />
+            android:layout_marginRight="50dp">
+
+            <TextView
+                android:id="@+id/tv_login_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:text="登录设置"
+                android:textColor="@color/text_common_color"
+                android:textSize="@dimen/text_size_normal" />
+
+            <TextView
+                android:id="@+id/tv_scanning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:text="自动扫描"
+                android:textColor="@color/text_common_color"
+                android:textSize="@dimen/text_size_normal" />
+        </RelativeLayout>
 
     </LinearLayout>
 </RelativeLayout>

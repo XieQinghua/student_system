@@ -13,6 +13,8 @@ public class DialogUtil {
         try {
             dismissProgressDialog();
             progressDialog = ProgressHUD.show(activity, message, true, true, null);
+            //外部不可点击
+            progressDialog.setCanceledOnTouchOutside(false);
         } catch (Exception e) {
             e.printStackTrace();
         }

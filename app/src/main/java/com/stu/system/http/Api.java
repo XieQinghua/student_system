@@ -38,4 +38,9 @@ public class Api {
      * 删除某学生日志
      */
     public static final String DEL_HIS = "/Api/DelHis";
+
+    /**
+     * 获取连接状态
+     */
+    public static final String GET_CONN = "/tv/getconn";
 }

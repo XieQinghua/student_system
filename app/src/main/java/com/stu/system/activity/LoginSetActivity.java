@@ -37,6 +37,8 @@ public class LoginSetActivity extends BaseActivity {
     @BindView(R.id.btn_ok)
     Button btnOk;
 
+    private StateListDrawable selector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +56,11 @@ public class LoginSetActivity extends BaseActivity {
 
         final GradientDrawable checkedShape = DrawableUtils.getShape(GradientDrawable.RECTANGLE, Constants.TRAN_MAIN_COLOR, SizeUtils.dp2px(25), 0, Constants.TRAN_MAIN_COLOR);
         final GradientDrawable uncheckedShape = DrawableUtils.getShape(GradientDrawable.RECTANGLE, Constants.MAIN_COLOR, SizeUtils.dp2px(25), 0, Constants.MAIN_COLOR);
-        final StateListDrawable selector = DrawableUtils.getSelector(checkedShape, uncheckedShape);
+        selector = DrawableUtils.getSelector(checkedShape, uncheckedShape);
 
         tvTitle.setText(getResources().getString(R.string.login_set));
 
-        if(!TextUtils.isEmpty(SPUtils.getInstance().getString(Constants.HOST, ""))){
+        if (!TextUtils.isEmpty(SPUtils.getInstance().getString(Constants.HOST, ""))) {
             etLoginSet.setText(SPUtils.getInstance().getString(Constants.HOST, ""));
         }
         etLoginSet.setSelection(etLoginSet.getText().length());
@@ -91,8 +93,15 @@ public class LoginSetActivity extends BaseActivity {
         });
     }
 
+    @SuppressLint("NewApi")
     private void initData() {
-
+        if (null != getIntent().getStringExtra(Constants.HOST)) {
+            etLoginSet.setText(getIntent().getStringExtra(Constants.HOST));
+            etLoginSet.setSelection(etLoginSet.getText().length());
+            btnOk.setBackground(selector);
+            btnOk.setClickable(true);
+            Toast.makeText(LoginSetActivity.this, "请点击确定设置该IP", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick({R.id.btn_ok})

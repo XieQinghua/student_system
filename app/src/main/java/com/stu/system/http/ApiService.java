@@ -115,4 +115,7 @@ public interface ApiService {
     Observable<BaseBean> delHis(@Url String url,
                                 @Query("hid") String hid);
 
+    @GET()
+    Observable<BaseBean> getConn(@Url String url);
+
 }
